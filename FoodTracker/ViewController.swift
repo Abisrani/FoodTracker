@@ -14,7 +14,7 @@ class ViewController: UIViewController , UITextFieldDelegate {
     
     @IBOutlet weak var mealNameLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
-    
+    @IBOutlet weak var photoImageView: UIImageView!
     // Handle the text field's user input through delegate callback
     override func viewDidLoad() {
         super.viewDidLoad()
