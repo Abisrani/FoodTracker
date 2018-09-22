@@ -40,11 +40,15 @@
                                             <action selector="buttonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MVi-Of-Q3d"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="S5m-ah-fmf">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="S5m-ah-fmf">
                                         <rect key="frame" x="0.0" y="80.5" width="288" height="154"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="S5m-ah-fmf" secondAttribute="height" multiplier="144:77" id="EdT-2g-Wzs"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Fke-jH-qBF" appends="YES" id="X2B-Uv-PPo"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -68,6 +72,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Fke-jH-qBF">
+                    <connections>
+                        <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="kaV-lw-W84"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3437" y="-246"/>
         </scene>
