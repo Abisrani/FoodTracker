@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MealViewController.swift
 //  FoodTracker
 //
 //  Created by Abhishekkumar Israni on 2018-09-21.
@@ -7,15 +7,27 @@
 //
 
 import UIKit
+import os.log
 
-class ViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MealViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK:Properties
     
-    @IBOutlet weak var mealNameLabel: UILabel!
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
+    
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    
+    /*
+     This value is either passed by `MealTableViewController` in `prepare(for:sender:)`
+     or constructed as part of adding a new meal.
+     */
+    var meal: Meal?
+    
+    
     // Handle the text field's user input through delegate callback
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +35,19 @@ class ViewController: UIViewController , UITextFieldDelegate, UIImagePickerContr
         //here self is refering to viewController class because its scope is inside within the class
         nameTextField.delegate = self
         
+        // Enable the Save button only if the text field has a valid Meal name.
+        updateSaveButtonState()
+        
         }
    
         //MARK:UITextFieldDelegate
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Disable the Save button while editing.
+        saveButton.isEnabled = false
+        }
+    
+       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //It will close the keyboard to remove its first responder status
         textField.resignFirstResponder()
         
@@ -36,7 +57,9 @@ class ViewController: UIViewController , UITextFieldDelegate, UIImagePickerContr
     
         //MARK: after the textFieldShouldReturn funct we need the below function because after resigning the first responder status the system calls this method
         func textFieldDidEndEditing(_ textField: UITextField) {
-        mealNameLabel.text = textField.text
+            updateSaveButtonState()
+            navigationItem.title = textField.text
+        
        }
     
 
@@ -68,15 +91,34 @@ class ViewController: UIViewController , UITextFieldDelegate, UIImagePickerContr
         
     }
     
+    //MARK: Navigation
     
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // This method lets you configure a view controller before it's presented.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        super.prepare(for: segue, sender: sender)
+        
+        // Configure the destination view controller only when the save button is pressed.
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
+            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            return
+        }
+        let name = nameTextField.text ?? ""
+        let photo = photoImageView.image
+        let rating = ratingControl.rating
+        // Set the meal to be passed to MealTableViewController after the unwind segue.
+        meal = Meal(name: name, photo: photo, rating: rating)
+    }
     
     
     
     //gesture recognizers are the objects that allow to view to respond to a user the way a control does
-    
-    
     //here will attach a tap gesture in the view image i.e.UITapGestureRecognizer
-    
     //MARK:Action method for gesture recognizer..i.e. when user taps the image
     
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
@@ -104,6 +146,12 @@ class ViewController: UIViewController , UITextFieldDelegate, UIImagePickerContr
         
     }
     
+    //MARK: Private Methods
     
+    private func updateSaveButtonState() {
+        // Disable the Save button if the text field is empty. i.e is we need to type somthing otherwise it won't allow us to save
+        let text = nameTextField.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
+    }
 }
 

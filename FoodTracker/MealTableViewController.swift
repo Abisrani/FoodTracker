@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import os.log
 class MealTableViewController: UITableViewController {
     
     //MARK: Properties
@@ -91,16 +91,30 @@ class MealTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func prepareForSegue(for segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+        case "AddItem":
+            os_log("Adding a new meal.", log: OSLog.default, type: .debug)
+            
+        }
     }
-    */
+    
 
+    ////MARK: Actions
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
+            // Add a new meal.
+            let newIndexPath = IndexPath(row: meals.count, section: 0)
+            meals.append(meal)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
     
     //MARK: Private Methods
     private func loadSampleMeals() {
@@ -112,26 +126,26 @@ class MealTableViewController: UITableViewController {
         let photo5 = UIImage(named: "meal5")
         let photo6 = UIImage(named: "meal6")
         
-        guard let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4) else {
+        guard let meal1 = Meal(name: "Shahi Paneer", photo: photo1, rating: 4) else {
             fatalError("Unable to instantiate meal1")
         }
         
-        guard let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5) else {
+        guard let meal2 = Meal(name: "Bacon", photo: photo2, rating: 5) else {
             fatalError("Unable to instantiate meal2")
         }
         
-        guard let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3) else {
+        guard let meal3 = Meal(name: "Subway", photo: photo3, rating: 3) else {
             fatalError("Unable to instantiate meal2")
         }
-        guard let meal4 = Meal(name: "Caprese Salad", photo: photo4, rating: 4) else {
+        guard let meal4 = Meal(name: "Butter Chicken", photo: photo4, rating: 4) else {
             fatalError("Unable to instantiate meal1")
         }
         
-        guard let meal5 = Meal(name: "Chicken and Potatoes", photo: photo5, rating: 5) else {
+        guard let meal5 = Meal(name: "Veg Biryani", photo: photo5, rating: 5) else {
             fatalError("Unable to instantiate meal2")
         }
         
-        guard let meal6 = Meal(name: "Pasta with Meatballs", photo: photo6, rating: 3) else {
+        guard let meal6 = Meal(name: "Chicken Roasted", photo: photo6, rating: 3) else {
             fatalError("Unable to instantiate meal2")
             
             
