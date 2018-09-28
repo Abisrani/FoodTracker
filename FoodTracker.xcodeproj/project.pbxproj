@@ -158,9 +158,11 @@
 				TargetAttributes = {
 					CE62CC52215548B50005E533 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 					CE62CC66215548BB0005E533 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = CE62CC52215548B50005E533;
 					};
 				};
@@ -383,7 +385,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = abisrani.FoodTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -401,7 +403,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = abisrani.FoodTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -420,7 +422,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = abisrani.FoodTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodTracker.app/FoodTracker";
 			};
@@ -440,7 +442,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = abisrani.FoodTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodTracker.app/FoodTracker";
 			};
