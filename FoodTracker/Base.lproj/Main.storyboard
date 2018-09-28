@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WpH-35-dBB">
-                                <rect key="frame" x="16" y="77" width="288" height="228"/>
+                                <rect key="frame" x="16" y="77" width="288" height="362"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Meal Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gfs-Jf-Fte">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="30"/>
@@ -28,17 +28,17 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="S5m-ah-fmf">
-                                        <rect key="frame" x="0.0" y="30" width="288" height="154"/>
+                                        <rect key="frame" x="0.0" y="30" width="288" height="288"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="S5m-ah-fmf" secondAttribute="height" multiplier="144:77" id="EdT-2g-Wzs"/>
+                                            <constraint firstAttribute="width" secondItem="S5m-ah-fmf" secondAttribute="height" multiplier="1:1" id="EdT-2g-Wzs"/>
                                         </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="Fke-jH-qBF" appends="YES" id="X2B-Uv-PPo"/>
                                         </connections>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tXb-tU-qnz" customClass="RatingControl" customModule="FoodTracker">
-                                        <rect key="frame" x="18" y="184" width="252" height="44"/>
+                                        <rect key="frame" x="18" y="318" width="252" height="44"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -100,13 +100,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="q6u-Bp-vDw">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="q6u-Bp-vDw">
                                             <rect key="frame" x="0.0" y="-8" width="108" height="108"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="q6u-Bp-vDw" secondAttribute="height" multiplier="1:1" id="dJz-Jx-Fz7"/>
+                                                <constraint firstAttribute="width" constant="108" id="sa0-ED-AuX"/>
+                                                <constraint firstAttribute="height" constant="108" id="wAs-qN-dQh"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpt-VI-yTV">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpt-VI-yTV">
                                             <rect key="frame" x="116" y="11" width="188" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -121,6 +124,13 @@
                                             </userDefinedRuntimeAttributes>
                                         </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="q6u-Bp-vDw" firstAttribute="top" secondItem="uZS-Ua-TxN" secondAttribute="top" constant="-8" id="5dH-i8-PPg"/>
+                                        <constraint firstItem="Jpt-VI-yTV" firstAttribute="leading" secondItem="q6u-Bp-vDw" secondAttribute="trailing" constant="8" id="aM3-0k-CnQ"/>
+                                        <constraint firstItem="Jpt-VI-yTV" firstAttribute="trailing" secondItem="uZS-Ua-TxN" secondAttribute="trailingMargin" id="i1v-IA-6fJ"/>
+                                        <constraint firstItem="q6u-Bp-vDw" firstAttribute="leading" secondItem="uZS-Ua-TxN" secondAttribute="leading" id="sjs-ps-is3"/>
+                                        <constraint firstItem="Jpt-VI-yTV" firstAttribute="top" secondItem="uZS-Ua-TxN" secondAttribute="topMargin" id="zAT-9F-jib"/>
+                                    </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="starCount">
                                             <integer key="value" value="0"/>

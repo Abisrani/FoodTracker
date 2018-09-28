@@ -9,15 +9,16 @@
 import UIKit
 import os.log
 
-class MealViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+ // The following MealViewCintroller is the subclass of the UIViewcontroller which inherits all the behavior
+
+  class MealViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK:Properties
-    
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
-    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     
@@ -25,6 +26,7 @@ class MealViewController: UIViewController , UITextFieldDelegate, UIImagePickerC
      This value is either passed by `MealTableViewController` in `prepare(for:sender:)`
      or constructed as part of adding a new meal.
      */
+    /// i.e. this var will store the value of the meal name, rating and image....
     var meal: Meal?
     
     
@@ -32,7 +34,7 @@ class MealViewController: UIViewController , UITextFieldDelegate, UIImagePickerC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //here self is refering to viewController class because its scope is inside within the class
+        //here self is refering to viewController class because its scope is within the class...
         nameTextField.delegate = self
         
         // Set up views if editing an existing Meal. here the meal property will only be non nil if the existed meal is updated
@@ -43,7 +45,9 @@ class MealViewController: UIViewController , UITextFieldDelegate, UIImagePickerC
             ratingControl.rating = meal.rating
         }
         
+        ////The following method will be used to..
         // Enable the Save button only if the text field has a valid Meal name.
+        ////i.e. without the meal name you can't save update the meal, user should provide the valid name
         updateSaveButtonState()
         
         }
@@ -52,11 +56,12 @@ class MealViewController: UIViewController , UITextFieldDelegate, UIImagePickerC
     
         func textFieldDidBeginEditing(_ textField: UITextField) {
         // Disable the Save button while editing.
+        ///following will be used when user is editing something after he presses the 'return' then the save button gets activated
         saveButton.isEnabled = false
         }
     
        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //It will close the keyboard to remove its first responder status
+        ////It will close the keyboard to remove its first responder status....
         textField.resignFirstResponder()
         
         // return true means user will respond by pressing the return key after typing the text
@@ -77,15 +82,16 @@ class MealViewController: UIViewController , UITextFieldDelegate, UIImagePickerC
     }
 
     //MARK: UIImagePickerControllerDelegate
+    ////this is a set of methods that your delegate object must implement to interact with the image picker interface....
+    ///the following method will dismiss if a user cancels a picked(selected) image
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     
     }
     
-    //The following function is used whenever a user select an image and wants to do something with the image.
+    ////The following function is used whenever a user select an image and wants to do something with the image.....
     
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     
     guard let selectedImage = info[UIImagePickerControllerOriginalImage]as?  UIImage else{
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")

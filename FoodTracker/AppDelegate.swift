@@ -6,9 +6,15 @@
 //  Copyright © 2018 abisrani.org. All rights reserved.
 //
 
+
+/// This class is automatically created whenever we create a new project....
+//it does two things...
+///1. this will create window where apps content is drawn
+///2. Also creates an entry point for the app and a run loop which will deliver input events to the app
+
 import UIKit
 
-@UIApplicationMain
+@UIApplicationMain ///this will do the above point number 2.
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
