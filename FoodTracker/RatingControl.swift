@@ -58,6 +58,8 @@ import UIKit
         
         
         // Load Button Images
+        
+        ////  this is defining about the button,,, all the details required in button...
         let bundle = Bundle(for: type(of: self))
         let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
         let emptyStar = UIImage(named:"emptyStar", in: bundle, compatibleWith: self.traitCollection)
@@ -126,6 +128,7 @@ import UIKit
             }
             
             // Assign the hint string and value string
+            ////this is a description of the result of performing an action on the accessibility element, in a localized string.
             button.accessibilityHint = hintString
             button.accessibilityValue = valueString
         }

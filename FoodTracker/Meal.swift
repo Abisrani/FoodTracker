@@ -11,7 +11,7 @@
 import UIKit
 import os.log
 class Meal:NSObject , NSCoding {
- 
+    
     func encode(with aCoder: NSCoder) {
         aCoder.encode(name, forKey: PropertyKey.name)
         aCoder.encode(photo, forKey: PropertyKey.photo)
@@ -20,7 +20,7 @@ class Meal:NSObject , NSCoding {
     
     
     
-//    encode(with aCoder: NSCoder)
+    //    encode(with aCoder: NSCoder)
     required convenience init?(coder aDecoder: NSCoder) {
         // The name is required. If we cannot decode a name string, the initializer should fail.
         guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
@@ -35,7 +35,7 @@ class Meal:NSObject , NSCoding {
         // Must call designated initializer.
         self.init(name: name, photo: photo, rating: rating)
     }
-
+    
     //MARK: Properties
     
     var name: String
@@ -46,9 +46,8 @@ class Meal:NSObject , NSCoding {
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("meals")
-
-    //MARK: Types
     
+    //MARK: Types
     struct PropertyKey {
         static let name = "name"
         static let photo = "photo"
@@ -69,7 +68,7 @@ class Meal:NSObject , NSCoding {
         guard (rating >= 0) && (rating <= 5) else {
             return nil
         }
-
+        
         
         // Initialize stored properties.
         self.name = name

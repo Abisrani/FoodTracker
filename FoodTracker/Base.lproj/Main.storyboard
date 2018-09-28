@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WpH-35-dBB">
-                                <rect key="frame" x="16" y="77" width="288" height="362"/>
+                                <rect key="frame" x="16" y="77" width="288" height="414"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Meal Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gfs-Jf-Fte">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="30"/>
@@ -28,22 +28,26 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="S5m-ah-fmf">
-                                        <rect key="frame" x="0.0" y="30" width="288" height="288"/>
+                                        <rect key="frame" x="0.0" y="30" width="288" height="340"/>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="340" id="DGh-1M-Hi1"/>
                                             <constraint firstAttribute="width" secondItem="S5m-ah-fmf" secondAttribute="height" multiplier="1:1" id="EdT-2g-Wzs"/>
+                                            <constraint firstAttribute="width" constant="340" id="kED-TQ-TD8"/>
                                         </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="Fke-jH-qBF" appends="YES" id="X2B-Uv-PPo"/>
                                         </connections>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tXb-tU-qnz" customClass="RatingControl" customModule="FoodTracker">
-                                        <rect key="frame" x="18" y="318" width="252" height="44"/>
+                                        <rect key="frame" x="18" y="370" width="252" height="44"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Gfs-Jf-Fte" secondAttribute="trailing" id="EFO-o3-5MW"/>
                                     <constraint firstItem="Gfs-Jf-Fte" firstAttribute="leading" secondItem="WpH-35-dBB" secondAttribute="leading" id="IE8-TC-0zY"/>
+                                    <constraint firstAttribute="trailing" secondItem="S5m-ah-fmf" secondAttribute="trailing" id="QdY-gF-dD0"/>
+                                    <constraint firstItem="S5m-ah-fmf" firstAttribute="leading" secondItem="WpH-35-dBB" secondAttribute="leading" id="nQf-Bn-ge1"/>
                                 </constraints>
                             </stackView>
                         </subviews>

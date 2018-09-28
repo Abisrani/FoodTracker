@@ -16,6 +16,7 @@ import os.log
     
     //MARK:Properties
     
+    //// Reference variavle for views using view controller ..i.e. any change to the views will be done by this..
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
