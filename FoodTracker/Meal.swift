@@ -44,8 +44,15 @@ class Meal:NSObject , NSCoding {
     
     //MARK: Archiving Paths
     
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("meals")
+    /*
+     The following lines of code explains ....
+     The DocumentsDirectory constant uses the file manager’s urls(for:in:) method to look up the URL for your app’s documents directory.
+     Here you will find one directory where you can store your apps data....
+     for making your own directory, {we use DocumentsDirectory.appendingPathComponent("meals")}  i.e. "meals" in the end indicates the directory for our app...
+ 
+    */
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!//this line determines the url for the directory....
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("meals")// this line is used to create directory for our apps data...
     
     //MARK: Types
     struct PropertyKey {
@@ -54,7 +61,9 @@ class Meal:NSObject , NSCoding {
         static let rating = "rating"
     }
     
-    // Initializer is a method that prepares an instance of a class for use, which involves setting an initial value for each property and performing any other setup or initialization.
+    /*
+     Initializer is a method that prepares an instance of a class for use, which involves setting an initial value for each property and performing any other setup or initialization......
+     */
     //MARK: Initialization
     init?(name: String, photo: UIImage?, rating: Int) {
         

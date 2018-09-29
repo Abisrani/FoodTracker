@@ -197,14 +197,20 @@ class MealTableViewController: UITableViewController {
         meals += [meal1, meal2, meal3,meal4, meal5, meal6]
         
     }
+    
+    
+    //// the role of this method is to save the new meal to directory we created..
+    ////i.e.  we created the directory in the "meal.swift" class by appending "meals" at the end..
+    ////this will store the data at this directory and successful attempt logs a message at the control..
     private func saveMeals() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
-        if isSuccessfulSave {
-            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)        
+        
+     if isSuccessfulSave {
+          os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
         } else {
             os_log("Failed to save meals...", log: OSLog.default, type: .error)
         }
-    
+   
     }
     private func loadMeals() -> [Meal]? {
         
