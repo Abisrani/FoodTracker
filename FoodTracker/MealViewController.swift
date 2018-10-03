@@ -10,9 +10,9 @@ import UIKit
 import os.log
 
 
- // The following MealViewCintroller is the subclass of the UIViewcontroller which inherits all the behavior
+// MARK: The following MealViewCintroller is the subclass of the UIViewcontroller which inherits all the behavior
 
-  class MealViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MealViewController: UIViewController , UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK:Properties
     
@@ -30,8 +30,8 @@ import os.log
     /// i.e. this var will store the value of the meal name, rating and image....
     var meal: Meal?
     
-    
-    // Handle the text field's user input through delegate callback
+    /* MARK: - user text handling
+     Handle the text field's user input through delegate callback */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,91 +46,95 @@ import os.log
             ratingControl.rating = meal.rating
         }
         
-        ////The following method will be used to..
-        // Enable the Save button only if the text field has a valid Meal name.
-        ////i.e. without the meal name you can't save update the meal, user should provide the valid name
+        /* MARK: - definition of updateSaveButtonState -
+         ////The following method will be used to..
+         // Enable the Save button only if the text field has a valid Meal name.
+         ////i.e. without the meal name you can't save update the meal, user should provide the valid name */
         updateSaveButtonState()
         
-        }
-   
-        //MARK:UITextFieldDelegate
+    }
     
-        func textFieldDidBeginEditing(_ textField: UITextField) {
-        // Disable the Save button while editing.
-        ///following will be used when user is editing something after he presses the 'return' then the save button gets activated
+    //MARK:UITextFieldDelegate
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        /* MARK: -Disable the Save button while editing.-
+         ///following will be used when user is editing something after he presses the 'return' then the save button gets activated */
         saveButton.isEnabled = false
-        }
+    }
     
-       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        ////It will close the keyboard to remove its first responder status....
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        /* MARK:  closing of Keyboard -
+         It will close the keyboard to remove its first responder status.... */
         textField.resignFirstResponder()
         
         // return true means user will respond by pressing the return key after typing the text
         return true
-        }
+    }
     
-        //MARK: after the textFieldShouldReturn funct we need the below function because after resigning the first responder status the system calls this method
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            updateSaveButtonState()
-            navigationItem.title = textField.text
+    /* MARK: -after the textFieldShouldReturn funct we need the below function because after resigning the first responder status the system calls this method- */
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateSaveButtonState()
+        navigationItem.title = textField.text
         
-       }
+    }
     
-
-       override func didReceiveMemoryWarning() {
+    
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    //MARK: UIImagePickerControllerDelegate
-    ////this is a set of methods that your delegate object must implement to interact with the image picker interface....
-    ///the following method will dismiss if a user cancels a picked(selected) image
+    
+    /* MARK: - UIImagePickerControllerDelegate-
+     ////this is a set of methods that your delegate object must implement to interact with the image picker interface....
+     ///the following method will dismiss if a user cancels a picked(selected) image */
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
-    
+        
     }
     
-    ////The following function is used whenever a user select an image and wants to do something with the image.....
     
-     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
+    /* MARK: - imagePickerController -
+    ///The following function is used whenever a user select an image and wants to do something with the image.....*/
     
-    guard let selectedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]as?  UIImage else{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
+        
+        guard let selectedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]as?  UIImage else{
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
-
-    
+        
+        
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
         
     }
     
-    //MARK: Navigation
+    //MARK:  - Navigation
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-       
+        
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
-       
+        
         if isPresentingInAddMealMode {
             dismiss(animated: true, completion: nil)
         }
             
-        
+            
         else if let owningNavigationController = navigationController{
             owningNavigationController.popViewController(animated: true)
         }
-        
+            
         else {
             fatalError("The MealViewController is not inside a navigation controller.")
         }
     }
     
-    // This method lets you configure a view controller before it's presented.
+    //MARK: - This method lets you configure a view controller before it's presented.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
@@ -148,10 +152,10 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     }
     
     
-    
+    //MARK: - Action method for gesture recognizer..i.e. when user taps the image
     //gesture recognizers are the objects that allow to view to respond to a user the way a control does
     //here will attach a tap gesture in the view image i.e.UITapGestureRecognizer
-    //MARK:Action method for gesture recognizer..i.e. when user taps the image
+    
     
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         
@@ -178,7 +182,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         
     }
     
-    //MARK: Private Methods
+    //MARK: - Private Methods
     
     private func updateSaveButtonState() {
         // Disable the Save button if the text field is empty. i.e is we need to type somthing otherwise it won't allow us to save
@@ -190,10 +194,10 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
 }
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
+    return input.rawValue
 }

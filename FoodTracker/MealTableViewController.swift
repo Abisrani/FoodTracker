@@ -203,7 +203,7 @@ class MealTableViewController: UITableViewController {
     ////i.e.  we created the directory in the "meal.swift" class by appending "meals" at the end..
     ////this will store the data at this directory and successful attempt logs a message at the control..
     private func saveMeals() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
         
      if isSuccessfulSave {
           os_log("Meals successfully saved.", log: OSLog.default, type: .debug)

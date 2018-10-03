@@ -21,13 +21,13 @@ import UIKit
             setupButtons()
         }
     }
-    //MARK: Intialisation
+    //MARK: - Intialisation
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButtons()
     }
     
-    //MARK: button action
+    //MARK: - button action
     @objc func ratingButtonTapped(button: UIButton) {
         guard let index = ratingButtons.index(of: button) else {
             fatalError("The button, \(button), is not in the ratingButtons array: \(ratingButtons)")
@@ -74,6 +74,7 @@ import UIKit
             button.setImage(filledStar, for: .selected)
             button.setImage(highlightedStar, for: .highlighted)
             button.setImage(highlightedStar, for: [.highlighted, .selected])
+            
             // Add constraints
             button.translatesAutoresizingMaskIntoConstraints = false
             button.heightAnchor.constraint(equalToConstant: starSize.height).isActive = true
