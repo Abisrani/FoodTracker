@@ -169,6 +169,10 @@ class MealTableViewController: UITableViewController {
         let photo5 = UIImage(named: "meal5")
         let photo6 = UIImage(named: "meal6")
         
+        
+        
+        // MARK : guard statements are used to check that the all the downcasts works properly
+        
         guard let meal1 = Meal(name: "Shahi Paneer", photo: photo1, rating: 4) else {
             fatalError("Unable to instantiate meal1")
         }

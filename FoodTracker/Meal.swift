@@ -36,13 +36,13 @@ class Meal:NSObject , NSCoding {
         self.init(name: name, photo: photo, rating: rating)
     }
     
-    //MARK: Properties
+    //MARK: - Properties
     
     var name: String
     var photo: UIImage?
     var rating: Int
     
-    //MARK: Archiving Paths
+    //MARK: - Archiving Paths
     
     /*
      The following lines of code explains ....
